@@ -1,22 +1,45 @@
+import java.util.ArrayList;
+
 public class TrainConsistApp {
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Train Consist Management System");
-        System.out.println("Application: Train Consist App");
-        System.out.println("Version: 1.0");
 
-        // Train basic details
-        String trainName = "Express Train";
-        int totalBogies = 0;
+        // Train consist using ArrayList
+        ArrayList<String> passengerBogies = new ArrayList<>();
 
-        System.out.println("\n--- Train Consist Summary ---");
+        // Add bogies
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
 
-        System.out.println("Train Name: " + trainName);
-        System.out.println("Total Bogies Attached: " + totalBogies);
-        System.out.println("Passenger Capacity: 0");
-        System.out.println("Cargo Load: 0");
-        System.out.println("Status: Train initialized with empty consist");
+        System.out.println("\n--- After Adding Bogies ---");
+        displayBogies(passengerBogies);
 
+        // Remove a bogie
+        passengerBogies.remove("AC Chair");
+
+        System.out.println("\n--- After Removing AC Chair ---");
+        displayBogies(passengerBogies);
+
+        // Check if bogie exists
+        String checkBogie = "Sleeper";
+        if (passengerBogies.contains(checkBogie)) {
+            System.out.println("\n" + checkBogie + " bogie is present in the train.");
+        } else {
+            System.out.println("\n" + checkBogie + " bogie is NOT present.");
+        }
+
+    }
+
+    // Helper method
+    public static void displayBogies(ArrayList<String> bogies) {
+
+        System.out.println("Total Passenger Bogies: " + bogies.size());
+
+        for (String bogie : bogies) {
+            System.out.println("Bogie Type: " + bogie);
+        }
     }
 }

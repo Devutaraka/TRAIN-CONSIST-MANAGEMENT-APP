@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988b954-aeea-4191-a919-117693606254" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/TrainConsistApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TrainConsistApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TrainConsistApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +66,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TrainConsistApp">
     <configuration name="BookMyStayApp" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="BookMyStayApp" />
       <module name="RA2411028010046" />
@@ -74,8 +74,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TrainConsistApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TrainConsistApp" />
+      <module name="RA2411028010046" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TrainConsistApp" />
         <item itemvalue="Application.BookMyStayApp" />
       </list>
     </recent_temporary>
