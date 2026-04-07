@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TrainConsistApp {
 
@@ -6,21 +7,23 @@ public class TrainConsistApp {
 
         System.out.println("Welcome to Train Consist Management System");
 
-        // List of bogies (objects)
+        // List of bogies
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 50));
         bogies.add(new Bogie("First Class", 30));
 
-        System.out.println("\n--- Before Sorting ---");
+        System.out.println("\n--- All Bogies ---");
         display(bogies);
 
-        // Sort using Comparator (by capacity)
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        // Filter bogies with capacity > 60
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        System.out.println("\n--- After Sorting (Low → High Capacity) ---");
-        display(bogies);
+        System.out.println("\n--- High Capacity Bogies (>60) ---");
+        display(filtered);
     }
 
     // Display method
