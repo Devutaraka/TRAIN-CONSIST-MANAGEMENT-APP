@@ -1,5 +1,4 @@
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.*;
 
 public class TrainConsistApp {
 
@@ -7,36 +6,39 @@ public class TrainConsistApp {
 
         System.out.println("Welcome to Train Consist Management System");
 
-        // Sample inputs
-        String trainId = "TRN-1234";
-        String cargoCode = "PET-AB";
+        // List of goods bogies
+        List<GoodsBogie> goods = new ArrayList<>();
 
-        // Regex patterns
-        String trainPattern = "TRN-\\d{4}";
-        String cargoPattern = "PET-[A-Z]{2}";
+        goods.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goods.add(new GoodsBogie("Rectangular", "Coal"));
+        goods.add(new GoodsBogie("Cylindrical", "Petroleum"));
 
-        // Compile patterns
-        Pattern p1 = Pattern.compile(trainPattern);
-        Pattern p2 = Pattern.compile(cargoPattern);
+        // Safety validation using stream
+        boolean isSafe = goods.stream()
+                .allMatch(b -> {
+                    if (b.type.equals("Cylindrical")) {
+                        return b.cargo.equals("Petroleum");
+                    }
+                    return true; // other bogies allowed
+                });
 
-        // Match inputs
-        Matcher m1 = p1.matcher(trainId);
-        Matcher m2 = p2.matcher(cargoCode);
+        System.out.println("\n--- Safety Check ---");
 
-        System.out.println("\n--- Validation Result ---");
-
-        // Validate Train ID
-        if (m1.matches()) {
-            System.out.println("Train ID is VALID: " + trainId);
+        if (isSafe) {
+            System.out.println("Train is SAFE for operation");
         } else {
-            System.out.println("Train ID is INVALID: " + trainId);
+            System.out.println("Train is NOT SAFE");
         }
+    }
+}
 
-        // Validate Cargo Code
-        if (m2.matches()) {
-            System.out.println("Cargo Code is VALID: " + cargoCode);
-        } else {
-            System.out.println("Cargo Code is INVALID: " + cargoCode);
-        }
+// Goods Bogie class
+class GoodsBogie {
+    String type;
+    String cargo;
+
+    GoodsBogie(String type, String cargo) {
+        this.type = type;
+        this.cargo = cargo;
     }
 }
