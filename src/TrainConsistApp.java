@@ -5,18 +5,27 @@ public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Train Consist Management System - UC17");
+        System.out.println("Train Consist Management System - UC18");
 
-        // Bogie type names
-        String[] bogies = {"Sleeper", "AC Chair", "First Class", "General", "Luxury"};
+        // Bogie IDs (unsorted)
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        System.out.println("\nBefore Sorting:");
-        System.out.println(Arrays.toString(bogies));
+        String searchKey = "BG309"; // Change this to test
 
-        // Built-in sorting
-        Arrays.sort(bogies);
+        boolean found = false;
 
-        System.out.println("\nAfter Sorting (Alphabetical):");
-        System.out.println(Arrays.toString(bogies));
+        // Linear Search
+        for (int i = 0; i < bogieIds.length; i++) {
+
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                System.out.println("\nBogie found at position: " + i);
+                break; // stop immediately when found
+            }
+        }
+
+        if (!found) {
+            System.out.println("\nBogie NOT found");
+        }
     }
 }
