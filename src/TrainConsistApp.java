@@ -5,44 +5,60 @@ public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Train Consist Management System");
+        System.out.println("Train Consist Management System - UC15");
+
+        // Create bogies
+        GoodsBogie b1 = new GoodsBogie("Cylindrical");
+        GoodsBogie b2 = new GoodsBogie("Rectangular");
+
+        // SAFE case
+        assignCargo(b1, "Petroleum");
+
+        // UNSAFE case
+        assignCargo(b2, "Petroleum");
+
+        System.out.println("\nProgram continues safely...");
+    }
+
+    // Assignment method with try-catch-finally
+    public static void assignCargo(GoodsBogie bogie, String cargo) {
 
         try {
-            // Valid bogie
-            PassengerBogie b1 = new PassengerBogie("Sleeper", 72);
-            System.out.println("Created: " + b1.name + " | Capacity: " + b1.capacity);
+            System.out.println("\nAssigning " + cargo + " to " + bogie.type);
 
-            // Invalid bogie (will throw exception)
-            PassengerBogie b2 = new PassengerBogie("AC Chair", -10);
-            System.out.println("Created: " + b2.name + " | Capacity: " + b2.capacity);
+            // Validation rule
+            if (bogie.type.equals("Rectangular") && cargo.equals("Petroleum")) {
+                throw new CargoSafetyException("Unsafe: Petroleum cannot be assigned to Rectangular bogie");
+            }
 
-        } catch (InvalidCapacityException e) {
+            // Assign cargo if safe
+            bogie.cargo = cargo;
+            System.out.println("Cargo assigned successfully");
+
+        } catch (CargoSafetyException e) {
+
             System.out.println("Error: " + e.getMessage());
+
+        } finally {
+
+            System.out.println("Assignment attempt completed for " + bogie.type);
         }
     }
 }
 
-// Passenger Bogie class
-class PassengerBogie {
+// Goods Bogie class
+class GoodsBogie {
+    String type;
+    String cargo;
 
-    String name;
-    int capacity;
-
-    PassengerBogie(String name, int capacity) throws InvalidCapacityException {
-
-        if (capacity <= 0) {
-            throw new InvalidCapacityException("Capacity must be greater than zero");
-        }
-
-        this.name = name;
-        this.capacity = capacity;
+    GoodsBogie(String type) {
+        this.type = type;
     }
 }
 
-// Custom Exception
-class InvalidCapacityException extends Exception {
-
-    InvalidCapacityException(String message) {
+// Custom Runtime Exception
+class CargoSafetyException extends RuntimeException {
+    CargoSafetyException(String message) {
         super(message);
     }
 }
