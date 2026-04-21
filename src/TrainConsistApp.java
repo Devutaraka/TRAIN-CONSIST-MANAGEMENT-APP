@@ -5,40 +5,44 @@ public class TrainConsistApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Train Consist Management System - UC19");
+        System.out.println("Train Consist Management System - UC20");
 
-        // Sorted Bogie IDs (IMPORTANT)
-        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+        // Empty bogie list
+        String[] bogieIds = {};  // empty array
 
-        String searchKey = "BG309"; // Change to test
+        String searchKey = "BG101";
 
-        int low = 0;
-        int high = bogieIds.length - 1;
+        try {
+            searchBogie(bogieIds, searchKey);
+        } catch (IllegalStateException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
 
+        System.out.println("\nProgram continues safely...");
+    }
+
+    // Search method with validation
+    public static void searchBogie(String[] bogieIds, String key) {
+
+        // Defensive check
+        if (bogieIds.length == 0) {
+            throw new IllegalStateException("No bogies available for search");
+        }
+
+        // Linear search
         boolean found = false;
 
-        // Binary Search
-        while (low <= high) {
-
-            int mid = (low + high) / 2;
-
-            int result = searchKey.compareTo(bogieIds[mid]);
-
-            if (result == 0) {
-                System.out.println("\nBogie found at position: " + mid);
+        for (String id : bogieIds) {
+            if (id.equals(key)) {
                 found = true;
                 break;
             }
-            else if (result < 0) {
-                high = mid - 1; // search left
-            }
-            else {
-                low = mid + 1; // search right
-            }
         }
 
-        if (!found) {
-            System.out.println("\nBogie NOT found");
+        if (found) {
+            System.out.println("Bogie found: " + key);
+        } else {
+            System.out.println("Bogie NOT found");
         }
     }
 }
